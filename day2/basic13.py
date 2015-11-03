@@ -22,7 +22,7 @@ def printArrayVals(arr):
 #printArrayVals([1,2,3])
 
 def printMaxOfArray(arr):
-	max = 0
+	max = arr[0]
 	for i in arr:
 		if i > max:
 			max = i
@@ -45,10 +45,9 @@ def returnOddsArray1To255():
 #print returnOddsArray1To255()
 
 def squareArrayVals(arr):
-	new_arr = []
-	for i in arr:
-		new_arr.append(i * i)
-	return new_arr
+	for i in range(len(arr)):
+		arr[i] = arr[i] * arr[i]
+	return arr
 #print squareArrayVals([1,2,3,4])
 
 def returnArrayCountGreaterThanY(arr, y):
@@ -60,13 +59,10 @@ def returnArrayCountGreaterThanY(arr, y):
 #print returnArrayCountGreaterThanY([1,2,3,4], 0)
 
 def zeroOutArrayNegativeVals(arr):
-	new_arr = []
-	for i in arr:
-		if i < 0:
-			new_arr.append(0)
-		else:
-			new_arr.append(i)
-	return new_arr
+	for i in range(len(arr)):
+		if arr[i] < 0:
+			arr[i] = 0
+	return arr
 #print zeroOutArrayNegativeVals([-1,0,2,-3,3])
 
 def printMaxMinAverageArrayVals(arr):
@@ -84,19 +80,17 @@ def printMaxMinAverageArrayVals(arr):
 # [2,3,4,0]
 
 def shiftArrayValsLeft(arr):
-	new_arr = arr[1:]
-	new_arr.append(0)
-	return new_arr
+	for i in range(len(arr) - 1):
+		arr[i] = arr[i + 1]
+	arr[len(arr) - 1] = 0
+	return arr
 #print shiftArrayValsLeft([1,2,3,4])
 
 def swapStringForArrayNegativeVals(arr):
-	new_arr = []
-	for i in arr:
-		if i < 0:
-			new_arr.append('Dojo')
-		else:
-			new_arr.append(i)
-	return new_arr
+	for i in range(len(arr)):
+		if arr[i] < 0:
+			arr[i] = 'Dojo'
+	return arr
 #print swapStringForArrayNegativeVals([1,-1,3,5,-2])
 
 
