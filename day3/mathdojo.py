@@ -80,7 +80,7 @@ md3 = MathDojo3()
 print md3.add(1).add(2,3).subtract(3).result
 
 md4 = MathDojo3()
-print md4.add([1]).add([2,3]).subtract([3]).result
+print md4.add([1]).add([2,3], [1,1]).subtract([3]).result
 
 
 
