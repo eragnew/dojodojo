@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Great Number Game</title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <style type="text/css">
+    body {
+      text-align: center;
+      margin-top: 100px;
+    }
+    .red {
+      background-color: red;
+    }
+    .green {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <h3>Welcome to the Great Number Game!</h3>
+  <br>
+  <p>I am thinking of a number between 1 and 100.</p>
+  <p>Take a guess!</p>
+  <br>
+  <div id="response"></div>
+  <br>
+  <input type="text" id="number" placeholder="guess">
+  <br><br>
+  <button id="submit_number">Submit</button>
+  <script type="text/javascript">
+    $('#submit_number').click(function() {
+      $.post('/check', {number: $('#number').val()}, function(data) {
+        console.log(data);
+        if (data === 'too low') {
+          tooLow();
+        } else if (data === 'too high') {
+          tooHigh();
+        } else if (data === 'got it') {
+          gotIt();
+        }
+      });
+    });
+    function tooLow() {
+      $('#response').empty().removeClass().addClass('red').append('<p>Too low!</p>');
+    }
+    function tooHigh() {
+      $('#response').empty().removeClass().addClass('red').append('<p>Too high!</p>');
+    }
+    function gotIt() {
+      $('#response').empty().removeClass().addClass('green');
+      $('#response').append('<p>You got it!</p><br><br>');
+      $('#response').append('<form action="/" method="GET"><button type="submit">Play again!</button></form>');
+      $('#number').remove();
+      $('#submit_number').remove();
+    }
+  </script>
+</body>
+</html>
