@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Register</title>
+    <style type="text/css">
+      body {
+        text-align: center;
+        margin-top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/register" method="POST">
+      <table>
+        <tr>
+          <td><p>First Name:</p></td>
+          <td><input type="text" name="first_name"></td>
+        </tr>
+        <tr>
+          <td><p>Last Name:</p></td>
+          <td><input type="text" name="last_name"></td>
+        </tr>
+        <tr>
+          <td><p>Email:</p></td>
+          <td><input type="email" name="email"></td>
+        </tr>
+        <tr>
+          <td><p>Password:</p></td>
+          <td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+          <td><p>Confirm Password:</p></td>
+          <td><input type="password" name="confirm_password"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="text-align: center;">
+            <button type="submit">Submit</button>
+          </td>
+        </tr>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <tr>
+                <td colspan="2"><p>{{message}}</p></td>
+              </tr>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </table>
+    </form>
+  </body>
+</html>

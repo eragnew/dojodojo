@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Dojo Survey</title>
+    <style type="text/css">
+      body {
+        text-align: center;
+        margin-top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/process" method="POST">
+      <table>
+        <tr>
+          <td><p>Your Name:</p></td>
+          <td><input type="text" name="name">
+        </tr>
+        <tr>
+          <td><p>Dojo Location:</p></td>
+          <td>
+            <select name="location">
+              <option value="San Jose">San Jose</option>
+              <option value="Seattle">Seattle</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><p>Favorite Language:</p></td>
+          <td>
+            <select name="language">
+              <option value="Python">Python</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="Ruby">Ruby</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <p>Comment:</p>
+            <textarea name="comment"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="text-align: center;">
+            <button type="submit">Submit</button>
+          </td>
+        </tr>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <tr>
+                <td colspan="2"><p>{{message}}</p></td>
+              </tr>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </table>
+    </form>
+  </body>
+</html>
