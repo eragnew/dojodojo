@@ -1,0 +1,31 @@
+<script type="text/javascript">
+
+function removeNegatives(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] < 0) {
+      for (var j = i + 1; j < arr.length; j++) {
+        arr[j - 1] = arr[j];
+      }
+      arr.length = arr.length - 1;
+    }
+  }
+  return arr;
+}
+
+// do it without nested loops
+function removeNegatives2(arr) {
+  var negatives = 0;
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] < 0) {
+      negatives++;
+    } else {
+      arr[i - negatives] = arr[i];
+    }
+  }
+  arr.length = arr.length - negatives;
+  return arr;
+}
+
+console.log(removeNegatives2([0,1,2,-1,3,-5,4]));
+
+</script>

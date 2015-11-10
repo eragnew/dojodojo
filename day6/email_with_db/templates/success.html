@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registered</title>
+</head>
+<body>
+{% if new_email %}
+  <p style="color: green;"><b>The email address you entered ({{new_email}}) is a VALID email address! Thank you!</b></p>
+  <br><br>
+{% endif %}
+<h3>Registered Email Addresses:</h3>
+{% for email in emails %}
+  <p>
+    {{email['email']}} ({{email['created_at']}})
+    <form action="/delete" method="POST">
+      <input type="hidden" name="id" value="{{email['id']}}">
+      <input type="submit" value="DELETE">
+    </form>
+  </p>
+{% endfor %}
+<br><br>
+<a href="/">Back to Main Page</a>
+</body>
+</html>
