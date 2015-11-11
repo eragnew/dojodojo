@@ -1,0 +1,40 @@
+<script type="text/javascript">
+  function rotateArray(arr, x) {
+    while (x--) {
+      var temp = arr[0];
+      for (var j = 1; j < arr.length; j++) {
+        arr[j - 1] = arr[j];
+      }
+      arr[arr.length - 1] = temp;
+    }
+    return arr;
+  }
+  // console.log(rotateArray([1,2,3,4], 2));
+
+  function binarySearch(arr, x) {
+    var start = 0;
+    var end = arr.length - 1;
+    var half = arr.length/2;
+    while (start < end) {
+      if (arr[half] == x) {
+        return true;
+      }
+      else if (arr[half] > x) {
+        end = half;
+        half = (end - start) / 2;
+        if (arr[half] == x) {
+          return true;
+        }
+      }
+      else if (arr[half] < x) {
+        start = half;
+        half = (end - start) / 2;
+        if (arr[half] == x) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  console.log(binarySearch([1,2,3,4], 4));
+</script>

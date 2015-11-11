@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CodingDojo Wall</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">CodingDojo Wall</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><a href>Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="well">
+      {% for message in messages %}
+        <b>{{message}}</b>
+      {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#register" role="tab" data-toggle="tab">Register</a>
+        </li>
+        <li role="presentation">
+          <a href="#login" role="tab" data-toggle="tab">Login</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="register">
+          <br><br>
+          <form action="/register" method="POST">
+            <input type="text" class="form-control" placeholder="First Name" id="first_name" name="first_name">
+            <input type="text" class="form-control" placeholder="Last Name" id="last_name" name="last_name">
+            <input type="email" class="form-control" placeholder="Email" id="email" name="email">
+            <input type="password" class="form-control" placeholder="Password" id="password" name="password">
+            <input type="password" class="form-control" placeholder="Confirm Password" id="confirm_password" name="confirm_password">
+            <br>
+            <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="login">
+          <br><br>
+          <form action="/login" method="POST">
+            <input type="email" class="form-control" placeholder="Email" id="email" name="email">
+            <input type="password" class="form-control" placeholder="Password" id="password" name="password">
+            <br>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+</body>
+</html>

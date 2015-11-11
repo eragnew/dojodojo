@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CodingDojo Wall</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">CodingDojo Wall</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href>Welcome {{session['user']['first_name']}}</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="well">
+      {% for message in messages %}
+        <b>{{message}}</b>
+      {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h4>Post a new message</h4>
+      <form action="/messages" method="POST">
+        <textarea class="form-control" rows="3" name="message" id="message"></textarea>
+        <input type="hidden" name="user_id" value="{{session['user']['user_id']}}">
+        <br>
+        <button class="btn btn-primary pull-right" type="submit">Post</button>
+      </form>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  {% for message in messages %}
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <p><b>{{message['first_name']}} {{message['last_name']}} - {{message['created_at']}}</b></p>
+        <p>{{message['message']}}</p>
+        <form action="/messages/{{message['message_id']}}/delete" method="POST">
+          <button class="btn btn-danger" type="submit">Delete</button>
+        </form>
+        <br>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    {% for comment in message['comments'] %}
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-7">
+          <p><b>{{comment['first_name']}} {{comment['last_name']}} - {{comment['created_at']}}</b></p>
+          <p>{{comment['comment']}}</p>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    {% endfor %}
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-7">
+        <p><b>Post a new comment</b></p>
+        <form action="/comments" method="POST">
+          <textarea class="form-control" rows="2" name="comment" id="comment"></textarea>
+          <input type="hidden" name="user_id" value="{{session['user']['user_id']}}">
+          <input type="hidden" name="message_id" value="{{message['message_id']}}">
+          <br>
+          <button class="btn btn-primary pull-right" type="submit">Post</button>
+        </form>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  {% endfor %}
+</div>
+
+</body>
+</html>
