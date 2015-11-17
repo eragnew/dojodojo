@@ -4,15 +4,27 @@
   <meta charset="utf-8">
   <title>Pokedex!</title>
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <style type="text/css">
+    .left {
+      width: 1000px;
+    }
+    .right {
+      position: fixed;
+      right: 40px;
+      top: 40px;
+    }
+  </style>
 </head>
 <body>
 
-<table>
+<div class="left" id="left"></div><div class="right" id="right"></div>
+
+<!-- <table>
   <tr>
     <td id="left" style="width: 80%;"></td>
     <td id="right" style="vertical-align: top;"></td>
   </tr>
-</table>
+</table> -->
 
 <script type="text/javascript">
   for (var i = 1; i < 152; i++) {
