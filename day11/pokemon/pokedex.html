@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pokedex!</title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+
+<table>
+  <tr>
+    <td id="left" style="width: 80%;"></td>
+    <td id="right" style="vertical-align: top;"></td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  for (var i = 1; i < 152; i++) {
+    $('#left').append('<img id= "' + i + '" src="http://pokeapi.co/media/img/' + i + '.png">');
+  }
+  $('img').click(function(data) {
+    var id = data.target.id;
+    $.get('http://pokeapi.co/api/v1/pokemon/' + id, function(data) {
+      $('#right').empty();
+      $('#right').append('<h2>' + data.name + '</h2>');
+      $('#right').append('<img src="http://pokeapi.co/media/img/' + id + '.png">');
+      $('#right').append('<p><b>Types</b></p><ul>');
+      for (var i = 0; i < data.types.length; i++) {
+        $('#right').append('<li>' + data.types[i].name + '</li>');
+      }
+      $('#right').append('</ul>');
+      $('#right').append('<p><b>Height</b></p>');
+      $('#right').append('<p>' + data.height + '</p>');
+      $('#right').append('<p><b>Weight</b></p>');
+      $('#right').append('<p>' + data.weight + '</p>');
+    });
+  });
+</script>
+
+</body>
+</html>
