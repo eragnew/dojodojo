@@ -1,0 +1,53 @@
+<script>
+
+function LinkedList() {
+  this.head = null;
+  this.pushBack = function(val) {
+    if (!this.head) this.head = new Node(val);
+    var curr = this.head;
+    while (curr.next) {
+      curr = curr.next;
+    }
+    curr.next = new Node(val);
+  };
+  this.back = function() {
+    if (!this.head) return null;
+    var curr = this.head;
+    while (curr.next) {
+      curr = curr.next;
+    }
+    return curr.val;
+  };
+  this.popBack = function() {
+    if (!this.head) return null;
+    var curr = this.head;
+    var prev = this.head;
+    while (curr.next) {
+      prev = curr;
+      curr = curr.next;
+    }
+    if ((prev == this.head) && !curr.next) this.head = null;
+    prev.next = null;
+    return curr.val;
+  };
+  this.removeAll = function() {
+    this.head = null;
+  };
+}
+function Node(val) {
+  this.val = val;
+  this.next = null;
+}
+
+var list = new LinkedList();
+list.pushBack(1);
+list.pushBack(2);
+list.pushBack(3);
+console.log(list.back());
+// console.log(list.popBack());
+list.popBack();
+console.log(list.back());
+console.log(list);
+
+
+</script>
