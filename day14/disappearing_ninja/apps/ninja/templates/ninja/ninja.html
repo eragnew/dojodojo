@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ninjas!</title>
+    {% load staticfiles %}
+  </head>
+  <body>
+    {% if color == 'blue' %}
+      <img src="{% static 'ninja/leonardo.jpg' %}">
+    {% elif color == 'orange' %}
+      <img src="{% static 'ninja/michelangelo.jpg' %}">
+    {% elif color == 'red' %}
+      <img src="{% static 'ninja/raphael.jpg' %}">
+    {% elif color == 'purple' %}
+      <img src="{% static 'ninja/donatello.jpg' %}">
+    {% else %}
+      <img src="{% static 'ninja/notapril.jpg' %}">
+    {% endif %}
+  </body>
+</html>
