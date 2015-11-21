@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Survey Form</title>
+    <style>
+      body {
+        margin-top: 80px;
+      }
+      .center {
+        width: 500px;
+        margin: auto;
+        border: 1px solid black;
+      }
+      .green {
+        background-color: green;
+      }
+      .form-control {
+        display: inline-block;
+        min-width: 40%;
+        margin: 10px;
+      }
+      #go-back {
+        font-weight: bold;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="center green">
+      <p>Thanks for submitting this form! You have submitted this form {{request.session.sub_count}} times now.</p>
+    </div>
+    <div class="center">
+      <div class="form-control">
+        <p><b><u>Submitted Information</u></b></p>
+      </div>
+      <div>
+        <div class="form-control">
+          <p>Name:</p>
+        </div>
+        <div class="form-control">
+          <p>{{request.session.name}}</p>
+        </div>
+      </div>
+      <div>
+        <div class="form-control">
+          <p>Dojo Location:</p>
+        </div>
+        <div class="form-control">
+          <p>{{request.session.location}}</p>
+        </div>
+      </div>
+      <div>
+        <div class="form-control">
+          <p>Favorite Language:</p>
+        </div>
+        <div class="form-control">
+          <p>{{request.session.language}}</p>
+        </div>
+      </div>
+      <div>
+        <div class="form-control">
+          <p>Comment:</p>
+        </div>
+        <div class="form-control">
+          <p>{{request.session.comment}}</p>
+        </div>
+      </div>
+      <div>
+        <div class="form-control" style="text-align: right; width: 95%;">
+          <a href="/">
+            <button>Go Back</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

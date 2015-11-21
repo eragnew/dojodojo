@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Survey Form</title>
+    <style>
+      body {
+        margin-top: 80px;
+      }
+      .center {
+        width: 500px;
+        margin: auto;
+        border: 1px solid black;
+      }
+      .green {
+        background-color: green;
+      }
+      .form-control {
+        display: inline-block;
+        min-width: 40%;
+        margin: 10px;
+      }
+      #submit {
+        font-weight: bold;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="center">
+      <form action="{% url 'process' %}" method="POST">
+        {% csrf_token %}
+        <div>
+          <div class="form-control">
+            <p>Your Name:</p>
+          </div>
+          <div class="form-control">
+            <input type="text" name="name">
+          </div>
+        </div>
+        <div>
+          <div class="form-control">
+            <p>Dojo Location:</p>
+          </div>
+          <div class="form-control">
+            <select name="location">
+              <option value="Mountain View">Mountain View</option>
+              <option value="San Francisco">San Francisco</option>
+              <option value="Seattle">Seattle</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <div class="form-control">
+            <p>Favorite Language:</p>
+          </div>
+          <div class="form-control">
+            <select name="language">
+              <option value="Haskell">Haskell</option>
+              <option value="Python">Python</option>
+              <option value="ML">ML</option>
+              <option value="FORTRAN">FORTRAN</option>
+              <option value="Assembly">Assembly</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <div class="form-control">
+            <p>Comment (optional):</p>
+            <textarea rows="5" cols="75" name="comment"></textarea>
+          </div>
+        </div>
+        <div>
+          <div class="form-control" style="text-align: right; width: 95%;">
+            <input type="submit" value="Submit" id="submit">
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

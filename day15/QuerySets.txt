@@ -1,0 +1,33 @@
+# get all interests
+interests = Interest.objects.all()
+
+# get all users
+users = User.objects.all()
+
+# insert an interest
+i1 = Interest(name='Snowboarding')
+i1.save()
+
+# insert a user
+u1 = User(first_name='Joe', last_name='Sixpack', age=35, occupation='Welder', interest=i1)
+u1.save()
+
+# select one interest that has id = 1
+interest = Interest.objects.get(id=1)
+
+# select all users whose first name starts with 'J'
+j_filter = User.objects.filter(first_name__startswith='J')
+
+# select all users with age > 25
+old_people = User.objects.filter(age__gt=25)
+
+# select all users created in 2015
+users_2015 = User.objects.filter(created_at__year=2015)
+
+# update user with id = 5, set age to 26
+u5 = User(first_name='Jeannie', last_name='Smith', age=22, occupation='Designer', interest=i1)
+u5.save()
+u5.age # 22
+u5.age = 26
+u5.save()
+u5.age # 26
