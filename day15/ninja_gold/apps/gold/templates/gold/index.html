@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja Gold!</title>
+    <style>
+      body {
+        margin-top: 20px;
+      }
+      #app-container {
+        width: 800px;
+        margin: auto;
+      }
+      #form-row {
+        display: inline-block;
+      }
+      .form-container {
+        width: 150px;
+        border: 1px solid black;
+        text-align: center;
+        display: inline-block;
+        padding: 10px;
+      }
+      #activities {
+        height: 200px;
+        overflow: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app-container">
+      <p>Your Gold: {{request.session.gold}}<b></b></p>
+      <div id="form-row">
+        <div class="form-container">
+          <h4>Farm</h4>
+          <p>(earns 10-20 gold)</p>
+          <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="building" value="farm">
+            <input type="submit" value="Find Gold!">
+          </form>
+        </div>
+        <div class="form-container">
+          <h4>Cave</h4>
+          <p>(earns 5-10 gold)</p>
+          <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="building" value="cave">
+            <input type="submit" value="Find Gold!">
+          </form>
+        </div>
+        <div class="form-container">
+          <h4>House</h4>
+          <p>(earns 2-5 gold)</p>
+          <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="building" value="house">
+            <input type="submit" value="Find Gold!">
+          </form>
+        </div>
+        <div class="form-container">
+          <h4>Casino</h4>
+          <p>(earns/takes 0-50 gold)</p>
+          <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="building" value="casino">
+            <input type="submit" value="Find Gold!">
+          </form>
+        </div>
+      </div>
+      <div id="activities">
+        {% for activity in request.session.activities reversed %}
+          <p>{{activity}}</p>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
