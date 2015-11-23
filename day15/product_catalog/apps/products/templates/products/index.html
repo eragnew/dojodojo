@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The Awesome Store</title>
+    <style>
+      body {
+        margin-top: 60px;
+      }
+      #container {
+        width: 800px;
+        margin: auto;
+      }
+      .row-cell {
+        display: inline-block;
+        padding: 5px 20px;
+        min-width: 100px;
+      }
+      .top-cell {
+        font-weight: bold;
+      }
+      .table {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h2>The Awesome Store</h2>
+      <h4>Product Listings</h4>
+      <div class="table"><!-- PRODUCT TABLE -->
+        <div><!-- ROW -->
+          <div class="row-cell top-cell">
+            <p>Manufacturer</p>
+          </div>
+          <div class="row-cell top-cell">
+            <p>Product Name</p>
+          </div>
+          <div class="row-cell top-cell">
+            <p>Price ($)</p>
+          </div>
+          <div class="row-cell top-cell">
+            <p>Date Added</p>
+          </div>
+          <div class="row-cell top-cell">
+            <p>Action</p>
+          </div>
+        </div><!-- END ROW -->
+        {% for prod in products %}
+          <div><!-- PRODUCT TABLE -->
+            <div><!-- ROW -->
+              <div class="row-cell">
+                <p>{{prod.manufacturer}}</p>
+              </div>
+              <div class="row-cell">
+                <p><a href="/products/{{prod.id}}">{{prod.name}}</a></p>
+              </div>
+              <div class="row-cell">
+                <p>{{prod.price}}</p>
+              </div>
+              <div class="row-cell">
+                <p>{{prod.created_at}}</p>
+              </div>
+              <div class="row-cell">
+                <p><a href="/products/{{prod.id}}">Edit</a></p>
+              </div>
+            </div><!-- END ROW -->
+        {% endfor %}
+      </div><!-- END PRODUCT TABLE -->
+      <h4>Add a Product</h4>
+      {% if messages %}
+        {% for message in messages %}
+          <p style="color: red;">{{message}}</p>
+        {% endfor %}
+      {% endif %}
+      <form action="/products/create" method="POST">
+        {% csrf_token %}
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p>Manufacturer:</p>
+          </div>
+          <div class="row-cell">
+            <select name="manufacturer">
+              {% for manu in manufacturers %}
+                <option value="{{manu}}">{{manu}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div><!-- END ROW -->
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p>Product Name:</p>
+          </div>
+          <div class="row-cell">
+            <input type="text" name="name">
+          </div>
+        </div><!-- END ROW -->
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p>Price:</p>
+          </div>
+          <div class="row-cell">
+            <input type="text" name="price">
+          </div>
+        </div><!-- END ROW -->
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p>Description:</p>
+          </div>
+          <div class="row-cell">
+            <textarea rows="4" name="description"></textarea>
+          </div>
+        </div><!-- END ROW -->
+        <div>
+          <input type="submit" value="Add">
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

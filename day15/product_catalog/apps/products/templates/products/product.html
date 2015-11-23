@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The Awesome Store</title>
+    <style>
+      body {
+        margin-top: 60px;
+      }
+      #container {
+        width: 800px;
+        margin: auto;
+      }
+      .row-cell {
+        display: inline-block;
+        padding: 10px;
+        min-width: 100px;
+        vertical-align: center;
+      }
+      .table {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <p style="text-align: right;"><a href="/products">Back to Product Listings</a></p>
+      <h2>{{product.name}}</h2>
+      <form action="/products/update/{{product.id}}" method="POST">
+      {% csrf_token %}
+      <div class="table"><!-- PRODUCT TABLE -->
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p>Manufacturer:</p>
+          </div>
+          <div class="row-cell">
+            <select name="manufacturer">
+              {% for manu in manufacturers %}
+                {% if manu == prod.manufacturer %}
+                  <option value="{{manu}}" selected>{{manu}}</option>
+                {% else %}
+                  <option value="{{manu}}">{{manu}}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+        </div><!-- END ROW -->
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p>Product Name:</p>
+          </div>
+          <div class="row-cell">
+            <input type="text" name="name" value="{{product.name}}">
+          </div>
+        </div><!-- END ROW -->
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p>Price:</p>
+          </div>
+          <div class="row-cell">
+            <input type="text" name="price" value="{{product.price}}">
+          </div>
+        </div><!-- END ROW -->
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p>Description:</p>
+          </div>
+          <div class="row-cell">
+            <textarea rows="4" name="description">{{product.description}}</textarea>
+          </div>
+        </div><!-- END ROW -->
+        <div class="row-cell">
+          <input type="submit" value="Update"></form>
+          <form action="/products/delete/{{product.id}}" method="POST">{% csrf_token %}<input type="submit" value="Delete"></form>
+        </div>
+      </div><!-- END PRODUCT TABLE -->
+    </div>
+  </body>
+</html>
