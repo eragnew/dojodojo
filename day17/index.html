@@ -1,0 +1,43 @@
+<script>
+
+function removeBlanks(str) {
+  var temp = '';
+  for (var i = 0; i < str.length; i++) {
+    if (str[i] != ' ') {
+      temp += str[i];
+    }
+  }
+  return temp;
+}
+function removeBlanks2(str) {
+  return str.split(' ').join('');
+}
+console.log(removeBlanks2('hello world'));
+// console.log(removeBlanks(' play that funky music '));
+
+function acronym(str) {
+  var temp = '', bool = true;
+  for (var i = 0; i < str.length; i++) {
+    if (str[i] == ' ') {
+      bool = true;
+    } else if (bool) {
+      temp += str[i].toUpperCase();
+      bool = false;
+    }
+  }
+  return temp;
+}
+// console.log(acronym('Live from New York, it\'s Saturday Night!'));
+
+function getStringDigits(str) {
+  var temp = '';
+  for (var i = 0; i < str.length; i++) {
+    if (parseInt(str[i]) || str[i] == '0') {
+      temp += str[i];
+    }
+  }
+  return parseInt(temp);
+}
+// console.log(getStringDigits('0s1a3y5w7h9a2t4?6!8?0'));
+
+</script>

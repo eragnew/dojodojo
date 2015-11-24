@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Awesome Store</title>
+    <style>
+      body {
+        margin-top: 80px;
+      }
+      #app-container {
+        width: 700px;
+        margin: auto;
+      }
+      .row-cell {
+        min-width: 150px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app-container">
+      <h3 style="text-align: right;"><a href="/checkout">Your Cart ({{prod_count.quantity__sum}})</a></h3>
+      <h3>Products</h3>
+      <div>
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p>Product Name</p>
+          </div>
+          <div class="row-cell">
+            <p>Price</p>
+          </div>
+          <div class="row-cell">
+            <p>Qnty</p>
+          </div>
+          <div class="row-cell">
+            <p>Add to Cart</p>
+          </div>
+        </div><!-- END ROW -->
+        {% for product in products %}
+          <form action="/products/add" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{product.id}}">
+            <div><!-- ROW -->
+              <div class="row-cell">
+                <p>{{product.name}}</p>
+              </div>
+              <div class="row-cell">
+                <p>{{product.price}}</p>
+              </div>
+              <div class="row-cell">
+                <input type="number" name="qnty" style="width: 30px;" value="1">
+              </div>
+              <div class="row-cell">
+                <input type="submit" value="Add">
+              </div>
+            </div><!-- END ROW -->
+          </form>
+        {% endfor %}
+      </div>
+      {% if messages %}
+        {% for message in messages %}
+          <p style="color: red;">{{message}}</p>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </body>
+</html>

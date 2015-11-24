@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Awesome Store</title>
+    <style>
+      body {
+        margin-top: 80px;
+      }
+      #app-container {
+        width: 700px;
+        margin: auto;
+      }
+      .row-cell {
+        min-width: 150px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app-container">
+      <p style="text-align: right;"><a href="/">Back to Products</a></p>
+      <h3>Checkout</h3>
+      <div>
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p>Product Name</p>
+          </div>
+          <div class="row-cell">
+            <p>Price</p>
+          </div>
+          <div class="row-cell">
+            <p>Qnty</p>
+          </div>
+          <div class="row-cell">
+            <p>Remove from Cart</p>
+          </div>
+        </div><!-- END ROW -->
+        {% for product in products %}
+          <form action="/products/delete/{{product.info.id}}" method="POST">
+            {% csrf_token %}
+            <div><!-- ROW -->
+              <div class="row-cell">
+                <p>{{product.info.name}}</p>
+              </div>
+              <div class="row-cell">
+                <p>{{product.info.price}}</p>
+              </div>
+              <div class="row-cell">
+                <p>{{product.qnty}}</p>
+              </div>
+              <div class="row-cell">
+                <input type="submit" value="Remove">
+              </div>
+            </div><!-- END ROW -->
+          </form>
+        {% endfor %}
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p><b>Total</b></p>
+          </div>
+          <div class="row-cell">
+            <p><b>${{total}}</b></p>
+          </div>
+          <div class="row-cell"></div>
+          <div class="row-cell"></div>
+        </div><!-- END ROW -->
+      </div>
+      <hr>
+      <h3>Billing Info</h3>
+      <div>
+        <form action="/order" method="POST">
+          {% csrf_token %}
+          <div><!-- ROW -->
+            <div class="row-cell">
+              Name:
+            </div>
+            <div class="row-cell">
+              <input type="text" name="name">
+            </div>
+          </div><!-- END ROW -->
+          <div><!-- ROW -->
+            <div class="row-cell">
+              Address:
+            </div>
+            <div class="row-cell">
+              <input type="text" name="address">
+            </div>
+          </div><!-- END ROW -->
+          <div><!-- ROW -->
+            <div class="row-cell">
+              Card #:
+            </div>
+            <div class="row-cell">
+              <input type="text" name="card_num">
+            </div>
+          </div><!-- END ROW -->
+          <div>
+            <div class="row-cell">
+              <input type="submit" value="Order">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

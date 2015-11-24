@@ -36,7 +36,7 @@
           <div class="row-cell">
             <select name="manufacturer">
               {% for manu in manufacturers %}
-                {% if manu == prod.manufacturer %}
+                {% if manu == product.manufacturer %}
                   <option value="{{manu}}" selected>{{manu}}</option>
                 {% else %}
                   <option value="{{manu}}">{{manu}}</option>

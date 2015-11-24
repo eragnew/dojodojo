@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Awesome Store</title>
+    <style>
+      body {
+        margin-top: 80px;
+      }
+      #app-container {
+        width: 700px;
+        margin: auto;
+      }
+      .row-cell {
+        min-width: 150px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app-container">
+      <h1>Your order has been placed! Thank you!</h1>
+      <h3>Order Summary</h3>
+      <p>Name: {{name}}</p>
+      <p>Address: {{address}}</p>
+      <p>Card #: (hidden)</p>
+      <div>
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p>Product Name</p>
+          </div>
+          <div class="row-cell">
+            <p>Price</p>
+          </div>
+          <div class="row-cell">
+            <p>Qnty</p>
+          </div>
+        </div><!-- END ROW -->
+        {% for product in products %}
+          <div><!-- ROW -->
+            <div class="row-cell">
+              <p>{{product.info.name}}</p>
+            </div>
+            <div class="row-cell">
+              <p>{{product.info.price}}</p>
+            </div>
+            <div class="row-cell">
+              <p>{{product.qnty}}</p>
+            </div>
+          </div><!-- END ROW -->
+        {% endfor %}
+        <div><!-- ROW -->
+          <div class="row-cell">
+            <p><b>Total</b></p>
+          </div>
+          <div class="row-cell">
+            <p><b>${{total}}</b></p>
+          </div>
+          <div class="row-cell"></div>
+        </div><!-- END ROW -->
+      </div>
+    </div>
+  </body>
+</html>
